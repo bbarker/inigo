@@ -1,0 +1,14 @@
+ns="Base"
+package="IdrTest"
+version="0.0.1"
+
+description="Unit-test framework for Idris2"
+link="https://github.com/inigo/tree/master/Base/IdrTest"
+readme="README.md"
+modules=["IdrTest.Test", "IdrTest.Expectation"]
+depends=["idris2", "contrib"]
+license="MIT"
+
+[deps]
+Base.Color="~0.0.1"
+Base.Extra="~0.0.1"

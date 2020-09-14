@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>Inigo Package Manager</title>
+	<link href="/main.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/svg+xml" href="/inigo.svg">
+</head>
+<body>
+	<nav>
+		<a href="/" class="logo">
+			<img src="/inigo.svg"/>
+		</a>
+		<a href="/">Inigo</a>
+		<a href="/guide">Guide</a>
+		<a href="/packages">Packages</a>
+		<a href="/about">About</a>
+	</nav>
+	<section id="search">
+		<form action="/search" method="get">
+			<input type="text" name="term" placeholder="Search packages (e.g. fmt, markdown, ...)" />
+			<input type="submit" value="Search" />
+		</form>
+	</section>
+	<article>
+		<%% CONTENTS %%>
+ 	</article>
+</body>
+</html>

@@ -1,0 +1,12 @@
+*.DS_Store
+build
+Deps
+Base/*/build
+Base/*/Deps
+Server/InigoStatic/Local/*
+.terraform
+*.tfstate
+*.tfstate.backup
+*.ipkg
+!./Inigo.ipkg
+!./Server/InigoServer/InigoServer.ipkg

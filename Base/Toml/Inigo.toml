@@ -1,0 +1,16 @@
+ns="Base"
+package="Toml"
+version="0.0.1"
+
+description="Toml Parser for Idris2"
+link="https://github.com/inigo/tree/master/Base/Toml"
+readme="README.md"
+modules=["Toml"]
+depends=["idris2", "contrib"]
+license="MIT"
+
+[deps]
+Base.Extra="~0.0.1"
+
+[dev-deps]
+Base.IdrTest="~0.0.1"

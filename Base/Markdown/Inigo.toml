@@ -1,0 +1,16 @@
+ns="Base"
+package="Markdown"
+version="0.0.4"
+
+description="Markdown Parser and Renderer for Idris2"
+link="https://github.com/inigo/tree/master/Base/Markdown"
+readme="README.md"
+modules=["Markdown", "Markdown.Data", "Markdown.Format.Html"]
+depends=["idris2", "contrib"]
+license="MIT"
+
+[deps]
+Base.Extra="~0.0.1"
+
+[dev-deps]
+Base.IdrTest="~0.0.1"

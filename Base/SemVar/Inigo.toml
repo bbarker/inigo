@@ -1,0 +1,17 @@
+ns="Base"
+package="SemVar"
+version="0.0.1"
+
+description="Semantic Version Parser and Satisfier"
+link="https://github.com/inigo/tree/master/Base/SemVar"
+readme="README.md"
+modules=["SemVar", "SemVar.Sat"]
+depends=["idris2", "contrib"]
+license="MIT"
+
+[deps]
+Base.Extra="~0.0.1"
+Base.Fmt="~0.0.1"
+
+[dev-deps]
+Base.IdrTest="~0.0.1"

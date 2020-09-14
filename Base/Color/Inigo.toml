@@ -1,0 +1,15 @@
+ns="Base"
+package="Color"
+version="0.0.1"
+
+description="Library for ANSI colors in your terminal"
+link="https://github.com/inigo/tree/master/Base/Color"
+readme="README.md"
+modules=["Color"]
+depends=["idris2", "contrib"] # TODO: How to rebuild when changes?
+license="MIT"
+
+[deps]
+
+[dev-deps]
+Base.IdrTest="~0.0.1"

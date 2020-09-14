@@ -1,0 +1,20 @@
+ns="Base"
+package="Inigo"
+version="0.0.1"
+
+description="Inigo Package Manager"
+modules=["Client.Client"]
+depends=["idris2", "base", "contrib", "prelude", "lib"]
+main="Client.Client"
+executable="inigo"
+
+[deps]
+Base.Color="^0.0.1"
+Base.Extra="^0.0.3"
+Base.Fmt="^0.0.1"
+Base.Markdown="^0.0.4"
+Base.SemVar="^0.0.1"
+Base.Toml="^0.0.1"
+
+[dev-deps]
+Base.IdrTest="^0.0.1" # Note: Dev dependency

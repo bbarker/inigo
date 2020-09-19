@@ -1,5 +1,5 @@
 all : inigo
-.PHONY : server inigo static inigo local-server deploy-init deploy test
+.PHONY : bootstrap server inigo install static local-server deploy-init deploy test
 
 define build_base_dep
 	(cd Base/$(1) && idris2 --build Bootstrap.ipkg --build-dir ../../build)
@@ -14,14 +14,20 @@ bootstrap :
 	$(call build_base_dep,Markdown)
 	$(call build_base_dep,SemVar)
 	$(call build_base_dep,Toml)
-	idris2 --build Inigo.ipkg --cg node
-	echo "Built \"build/exec/inigo\""
+	$(MAKE) inigo
 
 server :
 	idris2 --build Server/InigoServer.ipkg --cg node
 
 inigo :
 	idris2 --build Inigo.ipkg --cg node
+	echo '#!/usr/bin/env node' | cat - build/exec/inigo > temp && mv temp build/exec/inigo
+	chmod +x build/exec/inigo
+	echo "Built \"build/exec/inigo\""
+
+install : inigo
+	cp build/exec/inigo /usr/local/bin
+	chmod +x /usr/local/bin/inigo
 
 static :
 	env SKIP_EXT=true node Server/InigoStatic/localize.js Server/InigoStatic/Pages Server/InigoStatic/Local/pages.json

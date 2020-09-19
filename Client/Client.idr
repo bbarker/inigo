@@ -5,12 +5,14 @@ import Client.Action.Build
 import Client.Action.BuildDeps
 import Client.Action.Exec
 import Client.Action.FetchDeps
+import Client.Action.Init
 import Client.Action.Login
 import Client.Action.Pull
 import Client.Action.Push
 import Client.Action.Register
 import Client.Action.Test
 import Client.Server
+import Client.Skeleton.Skeleton
 import Client.Util
 import Data.List
 import Data.Maybe
@@ -53,6 +55,7 @@ data Action : Type where
   Exec : CodeGen -> List String -> Action
   Extract : String -> String -> Action
   FetchDeps : Server -> Bool -> Bool -> Action
+  Init : String -> String -> Action
   Login : Server -> Action
   Pull : Server -> String -> String -> (Maybe Version) -> Action
   Push : Server -> String -> Action
@@ -127,6 +130,9 @@ getAction [_, "login", serverName] =
     server <- getServer serverName
     pure $ Login server
 
+getAction [_, "init", packageNS, packageName] =
+  Just (Init packageNS packageName)
+
 getAction _ = Nothing
 
 getActionIO : IO (Maybe Action)
@@ -189,28 +195,48 @@ runAction (Login server) =
     putStrLn "Logging in..."
     run (loginAccount server ns passphrase)
 
+runAction (Init packageNS packageName) =
+  do
+    let skeleton = BaseWithTest -- TODO: Make a command line arg
+    putStrLn (fmt "Initializing new inigo application %s.%s from template %s" packageNS packageName (describe skeleton))
+    run (init skeleton packageNS packageName)
+
 runAction (Test codeGen) =
   run (test codeGen)
 
 short : String -> Maybe String
 short "archive" = Just "archive <pkg_file> <out_file>: Archive a given package"
-short "extract" = Just "extract <archive_file> <out_path>: Extract a given archive to directory"
-short "build-deps" = Just "build-deps: Build all deps"
-short "fetch-deps" = Just "fetch-deps <server>: Fetch and build all deps (opts: --no-build, --dev)"
 short "build" = Just "build <code-gen=node>: Build program under given code gen"
+short "build-deps" = Just "build-deps: Build all deps"
 short "exec" = Just "exec ...args: Execute program with given args [WIP codegen]"
-short "test" = Just "test: Run tests via IdrTest"
-short "push" = Just "push <server> <pkg_file>: Push a package to remote"
-short "pull" = Just "pull <server> <package_ns> <package_name> <version?>: Pull a package from remote"
-short "register" = Just "register <server>: Register an account namespace"
+short "extract" = Just "extract <archive_file> <out_path>: Extract a given archive to directory"
+short "fetch-deps" = Just "fetch-deps <server>: Fetch and build all deps (opts: --no-build, --dev)"
+short "init" = Just "init <namespace> <package>: Initialize a new project with given namespace and package name"
 short "login" = Just "login <server>: Login to an account"
+short "pull" = Just "pull <server> <package_ns> <package_name> <version?>: Pull a package from remote"
+short "push" = Just "push <server> <pkg_file>: Push a package to remote"
+short "register" = Just "register <server>: Register an account namespace"
+short "test" = Just "test: Run tests via IdrTest"
 short _ = Nothing
 
 usage : IO ()
 usage =
   let
     descs = join "\n\t" $ mapMaybe id $
-      map short ["push", "pull", "archive", "extract", "build-deps", "fetch-deps", "exec", "build", "test", "register", "login"]
+      map short
+        [ "archive"
+        , "build"
+        , "build-deps"
+        , "exec"
+        , "extract"
+        , "fetch-deps"
+        , "init"
+        , "login"
+        , "pull"
+        , "push"
+        , "register"
+        , "test"
+        ]
   in
     fail ("usage: Inigo <command> <...args>\n\n\t" ++ descs)
 

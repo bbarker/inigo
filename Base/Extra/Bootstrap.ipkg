@@ -1,0 +1,8 @@
+package Extra
+
+modules = Extra.String, Extra.Op, Extra.Monad, Extra.List, Extra.Either, Extra.Debug, Extra.Buffer
+depends = contrib, idris2
+
+sourcedir = ""
+
+version = "0.0.2"

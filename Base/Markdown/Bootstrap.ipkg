@@ -1,0 +1,8 @@
+package Markdown
+
+modules = Markdown.Format.Html, Markdown.Data, Markdown
+depends = contrib, idris2
+
+sourcedir = ""
+
+version = "0.0.3"

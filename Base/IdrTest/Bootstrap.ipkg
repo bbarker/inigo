@@ -1,0 +1,8 @@
+package IdrTest
+
+modules = IdrTest.Test, IdrTest.Expectation
+depends = idris2, contrib
+
+sourcedir = ""
+
+version = "0.0.1"

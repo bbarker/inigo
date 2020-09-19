@@ -8,5 +8,6 @@ Server/InigoStatic/Local/*
 *.tfstate
 *.tfstate.backup
 *.ipkg
+!*Bootstrap.ipkg
 !./Inigo.ipkg
 !./Server/InigoServer/InigoServer.ipkg

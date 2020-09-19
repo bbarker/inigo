@@ -1,0 +1,8 @@
+package Color
+
+modules = Color
+depends = idris2, contrib
+
+sourcedir = ""
+
+version = "0.0.1"

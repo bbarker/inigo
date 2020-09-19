@@ -1,15 +1,20 @@
 all : inigo
 .PHONY : server inigo static inigo local-server deploy-init deploy test
 
+define build_base_dep
+	(cd Base/$(1) && idris2 --build Bootstrap.ipkg --build-dir ../../build)
+endef
+
 bootstrap :
-	rm -rf TmpBuild
-	mkdir -p TmpBuild
-	find . -not -regex '.*/TmpBuild' -not -regex '.' -not -path '*/\.*' -exec cp -r '{}' TmpBuild \;
-	cp -r TmpBuild/Base/* TmpBuild/
-	cd TmpBuild && pwd && idris2 --build Inigo.ipkg --cg node
-	mkdir -p build/exec
-	cp TmpBuild/build/exec/inigo build/exec/inigo
-	rm -rf TmpBuild
+	mkdir -p build
+	$(call build_base_dep,Color)
+	$(call build_base_dep,Extra)
+	$(call build_base_dep,Fmt)
+	$(call build_base_dep,IdrTest)
+	$(call build_base_dep,Markdown)
+	$(call build_base_dep,SemVar)
+	$(call build_base_dep,Toml)
+	idris2 --build Inigo.ipkg --cg node
 	echo "Built \"build/exec/inigo\""
 
 server :

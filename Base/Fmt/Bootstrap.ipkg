@@ -1,0 +1,8 @@
+package Fmt
+
+modules = Fmt
+depends = contrib, idris2
+
+sourcedir = ""
+
+version = "0.0.1"

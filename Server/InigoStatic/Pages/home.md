@@ -13,14 +13,13 @@ Follow the [Guide](/guide) to install and get started with Inigo. Once everythin
 
  * Packager manager featuring semantic versioning of packages
  * Dependency resolution system with support for dev dependencies
- * Native Toml configuration files that compile to `ipkg`s
  * Light wrapper around native Idris2 commands (e.g. `idris2 --build`, etc)
  * Built-in (optional) unit test framework: [IdrTest](https://inigo.pm/packages/Base/IdrTest)
  * Support for registering accounts and pushing your own community packages
 
 ## Vision
 
-The goal of Inigo is to be a simple package manager and light wrapper around Idris2. Inigo is fully built in Idris2 and can bootstrap itself. Builds and core commands call out to the `idris2` command. Packages are hosted on CloudFlare using Workers running an Idris2 program (via the JavaScript codegen). The client is also native Idris2 and should soon support being compiled to JavaScript, Chez or other code generators.
+The goal of Inigo is to be a simple package manager and light wrapper around the Idris2 core. Inigo is fully built in Idris2 and can bootstrap itself. Builds and core commands call out to the `idris2` command. Packages are hosted on CloudFlare using Workers running an Idris2 program (via the JavaScript codegen). The client is also native Idris2 and should soon support being compiled to JavaScript, Chez or other code generators.
 
 ## Contributing
 

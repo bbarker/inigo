@@ -13,8 +13,10 @@ Follow the [Guide](/guide) to install and get started with Inigo. Once everythin
 
  * Packager manager featuring semantic versioning of packages
  * Dependency resolution system with support for dev dependencies
+ * Native Toml configuration files that compile to `ipkg`s
  * Light wrapper around native Idris2 commands (e.g. `idris2 --build`, etc)
- * Built-in (optional) unit test framework: `IdrTest`
+ * Built-in (optional) unit test framework: [IdrTest](https://inigo.pm/packages/Base/IdrTest)
+ * Support for registering accounts and pushing your own community packages
 
 ## Vision
 

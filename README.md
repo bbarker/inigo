@@ -46,8 +46,8 @@ make install
 Let's create a new app and use Inigo to manage our packages:
 
 ``` bash
-mkdir MyApp
-inigo new MyNamespace MyApp
+mkdir MyApp && cd MyApp
+inigo init MyNamespace MyApp
 ```
 
 You can read more about namespaces under the publishing a package section below.
